@@ -1,18 +1,48 @@
+* {
+	box-sizing: border-box;
+}
+
 :root {
-	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	line-height: 24px;
-	font-weight: 400;
+	--font: 'Montserrat', sans-serif;
+	--fontSize: 1rem;
+	--fontSizeTitle: 1.5rem;
+	--lineHeight: 150%;
+	--fontWeight: 400;
+
+	--darkColor: #000;
+	--mainColor: #363636;
+	--lightColor: #575757;
+	--contrastColor: #fff;
+	--highlightMainColor: #fff619a1;
+
+	--boxBorder: 1px solid #eaeaea;
+
+	--maxAppWidth: 90rem;
+	--appPaddingsMobile: 1rem 1rem 1.5rem;
+	--appPaddingsTablet: 3.15rem 1rem 3.95rem;
+	--appPaddings: 3.15rem 0 3.95rem;
+
+	--articleCardMaxWidth: 25rem;
+	--articleCardMinWidth: 12.5rem;
+	--articleCardGap: 2.8rem;
+
+	--articleMaxWidth: 80.62rem;
+	--articleMinWidth: min-content;
+	--articlePaddings: 2.18rem 4.68rem 3.12rem;
+
+	font-family: var(--font);
+	font-size: var(--fontSize);
+	line-height: var(--lineHeight);
+	font-weight: var(--fontWeight);
 
 	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	color: var(--contrastColor);
+	background-color: var(--mainColor);
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+	@media (prefers-color-scheme: light) {
+		color: var(--mainColor);
+		background-color: var(--contrastColor);
+	}
 }
 
 body {
@@ -20,14 +50,7 @@ body {
 }
 
 #root {
-	max-width: 1440px;
-	margin: 0 auto;
-	padding: 2rem;
-}
+	max-width: var(--maxAppWidth);
 
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
+	margin: 0 auto;
 }
