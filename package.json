@@ -8,18 +8,9 @@
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"deploy": "sh deploy.sh",
-		"prepare": "husky install",
-		"add-pre-commit": "npx husky add .husky/pre-commit \"yarn lint-staged\"",
-		"add-commit-msg": "npx husky add .husky/commit-msg  'npx --no -- commitlint --edit ${1}'",
-		"pre-commit": "lint-staged",
 		"format": "npx prettier --write. --ignore-path .gitignore",
 		"lint": "npx eslint ./src/**/* --fix",
 		"fix-style": "yarn lint && yarn format"
-	},
-	"lint-staged": {
-		"src/**/*.{js,jsx,mjs,cjs,ts,tsx}": [
-			"yarn fix-style"
-		]
 	},
 	"dependencies": {
 		"@commitlint/cli": "^17.4.1",
@@ -31,7 +22,6 @@
 		"@types/react-highlight-words": "^0.16.4",
 		"eslint-plugin-prettier": "^4.2.1",
 		"framer-motion": "^8.4.3",
-		"lint-staged": "^13.1.0",
 		"lodash": "^4.17.21",
 		"prettier": "^2.8.3",
 		"react": "^18.2.0",
@@ -53,7 +43,6 @@
 		"eslint-plugin-n": "^15.0.0",
 		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-react": "^7.32.1",
-		"husky": "^8.0.0",
 		"sass": "^1.57.1",
 		"typescript": "*",
 		"vite": "^4.0.0"
