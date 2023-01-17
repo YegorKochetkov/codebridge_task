@@ -1,24 +1,85 @@
-import styles from './App.module.scss';
+import React, { useEffect } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Box, SxProps, ThemeProvider } from '@mui/material';
+
+import ArticlesList from './components/ArticlesList';
+import ErrorMessage from './components/ErrorMessage';
+import useArticlesStore from './store';
+import Filter from './components/Filter';
+import { useTheme } from './hooks/useTheme';
+
+declare module '@mui/material/styles' {
+	interface BreakpointOverrides {
+		xs: false;
+		sm: false;
+		md: false;
+		lg: false;
+		xl: false;
+		mobile: true;
+		tablet: true;
+		laptop: true;
+		desktop: true;
+	}
+	interface Palette {
+		textColors: Palette['primary'];
+		highlightColors: Palette['primary'];
+	}
+
+	interface PaletteOptions {
+		textColors: PaletteOptions['primary'];
+		highlightColors: PaletteOptions['primary'];
+	}
+}
+
+const appStyles: SxProps = {
+	minHeight: '100vh',
+
+	padding: {
+		mobile: 'var(--appPaddingsMobile)',
+		tablet: 'var(--appPaddingsTablet)',
+		desktop: 'var(--appPaddings)',
+	},
+};
 
 function App() {
+	const articles = useArticlesStore((state) => state.articles);
+	const fetchError = useArticlesStore((state) => state.fetchError);
+	const loadArticles = useArticlesStore((state) => state.loadArticles);
+	const { theme } = useTheme();
+	useEffect(() => {
+		if (articles === null) {
+			loadArticles();
+		}
+	}, []);
+
+	if (fetchError !== null) {
+		return (
+			<ErrorMessage
+				error={
+					<>
+						<p>Something went wrong.</p>
+						<p>{fetchError}</p>
+					</>
+				}
+			/>
+		);
+	}
+
+	if (articles === null) {
+		return (
+			<CircularProgress
+				sx={{ display: 'block', margin: '0 auto', marginTop: '5rem' }}
+			/>
+		);
+	}
+
 	return (
-		<div className={styles.App}>
-			<div>
-				<a href='https://vitejs.dev' target='_blank'>
-					<img src='/vite.svg' className='logo' alt='Vite logo' />
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className='card'>
-				<button>count</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className='read-the-docs'>
-				Click on the Vite and React logos to learn more
-			</p>
-		</div>
+		<ThemeProvider theme={theme}>
+			<Box sx={appStyles}>
+				<Filter />
+				<ArticlesList />
+			</Box>
+		</ThemeProvider>
 	);
 }
 
