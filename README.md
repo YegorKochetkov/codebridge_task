@@ -1,8 +1,6 @@
-# in progress
+# [Demo](https://yegorkochetkov.github.io/codebridge_task/)
 
-## [Demo](https://yegorkochetkov.github.io/codebridge_task/)
-
-### Task
+## Task
 
 You need to build Single Page Application with React.
 
