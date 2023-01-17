@@ -75,6 +75,10 @@ function Article() {
 			transform: 'rotate(180deg)',
 		},
 
+		'& svg path': {
+			fill: '#000',
+		},
+
 		'@media (prefers-color-scheme: dark)': {
 			'& svg path': {
 				fill: '#fff',
