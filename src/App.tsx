@@ -46,6 +46,7 @@ function App() {
 	const fetchError = useArticlesStore((state) => state.fetchError);
 	const loadArticles = useArticlesStore((state) => state.loadArticles);
 	const { theme } = useTheme();
+
 	useEffect(() => {
 		if (articles === null) {
 			loadArticles();
