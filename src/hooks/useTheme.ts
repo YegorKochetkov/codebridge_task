@@ -1,7 +1,9 @@
 import React from 'react';
-import { createTheme, useMediaQuery } from '@mui/material';
+import { createTheme, Theme, useMediaQuery } from '@mui/material';
 
-export function useTheme() {
+export function useTheme(): {
+	theme: Theme;
+} {
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 	const theme = React.useMemo(() => {
 		const customTheme = createTheme({
@@ -33,7 +35,7 @@ export function useTheme() {
 				},
 			},
 			typography: {
-				fontFamily: "'Montserrat', sans-serif",
+				fontFamily: '"Montserrat", sans-serif',
 			},
 			breakpoints: {
 				values: {
