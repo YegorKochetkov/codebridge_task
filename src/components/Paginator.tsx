@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
@@ -41,4 +41,4 @@ function Paginator({ items, itemsPerPage, currPage }: PaginatorProps) {
 	);
 }
 
-export default Paginator;
+export default memo(Paginator);
